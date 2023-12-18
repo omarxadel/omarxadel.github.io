@@ -7,6 +7,11 @@ export type Project = {
 
 const projects: Project[] = [
   {
+    title: "Hearsome",
+    techs: ["React JS", "Flutter", "Express JS", "Deep Learning (ASR)"],
+    link: "https://github.com/lectly",
+  },
+  {
     title: "Bug Logger Desktop App",
     techs: ["ReactJS", "ElectronJS"],
     link: "https://github.com/omarxadel/bug-logger",
