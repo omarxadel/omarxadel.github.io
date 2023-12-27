@@ -1,14 +1,14 @@
 ---
-title: "Required Statistics for Data Science - Part 1"
+title: "Review of the required Statistics for Data Science - Part 1"
 publishedAt: 2023-11-26
 description: "Quick review over concepts like mean, variance, covariance, correlation coefficient, standard deviation and z-score."
 slug: "required-statistics-for-ds-1"
 isPublish: true
 ---
 
-## Required Statistics for Data Science - Part 1
+## Review of the required Statistics for Data Science - Part 1
 
-This notebook is a quick review over Essential Satatistics for Working with Data.
+This article is a quick review of Essential Statistics for Working with Data.
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
