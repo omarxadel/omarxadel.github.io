@@ -18,7 +18,7 @@ type Presentation = {
 const presentation: Presentation = {
   mail: "omarxadel21@gmail.com",
   status: { emoji: "🔒", label: "locked-in" },
-  roles: ["AI", "Founder", "Data"],
+  roles: ["AI Engineer", "Founder", "Data Strategy"],
   headline:
     "Enabling enterprises with post-training data strategy and grounded AI agents.",
   subhead:
