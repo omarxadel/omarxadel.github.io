@@ -1,105 +1,251 @@
 ---
-import { getCollection } from "astro:content";
-import { Image } from "astro:assets"
+import { Image } from "astro:assets";
 
 import Layout from "@/layouts/Layout.astro";
-import SocialLinks from "@/components/SocialLinks.astro";
-import PostCard from "@/components/PostCard.astro";
-import ProjectCard from "@/components/ProjectCard.astro";
-import Link from "@/components/shared/Link.astro";
-import convertAsteriskToStrongTag from "@/utils/convertAsteriskToStrongTag";
+import Icon from "@/components/Icon.astro";
 
 import presentation from "@/data/presentation";
-import projects from "@/data/projects";
-
-const posts = (await getCollection("posts")).sort(function (first, second) {
-  return second.data.publishedAt.getTime() - first.data.publishedAt.getTime();
-});
+import services from "@/data/services";
+import companies from "@/data/companies";
+import portfolio from "@/data/portfolio";
+import site from "@/data/site";
 ---
 
 <Layout>
-  <main class="flex flex-col gap-20">
-    <article
-      class="flex flex-col gap-8 md:flex-row-reverse md:justify-end md:gap-12"
-    >
+  <!-- Hero -->
+  <section class="flex flex-col items-center gap-10 pt-6 text-center md:pt-12">
+    <div class="relative">
+      <div
+        class="absolute inset-0 -z-10 rounded-full bg-neutral-200/60 blur-2xl dark:bg-neutral-800/60"
+      >
+      </div>
+      <div
+        class="overflow-hidden rounded-full border border-neutral-200 bg-neutral-100 ring-4 ring-white dark:border-neutral-800 dark:bg-neutral-900 dark:ring-neutral-950"
+      >
+        <Image
+          src={presentation.profile}
+          alt="Omar Adel"
+          width="208"
+          height="208"
+          class="h-44 w-44 grayscale md:h-52 md:w-52"
+        />
+      </div>
+
+      <span
+        class="absolute -bottom-1 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-medium text-neutral-700 shadow-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
+      >
+        <span class="text-base leading-none">{presentation.status.emoji}</span>
+        <span>{presentation.status.label}</span>
+      </span>
+    </div>
+
+    <div class="flex flex-col items-center gap-5">
+      <h1
+        class="max-w-3xl text-balance text-3xl font-semibold leading-tight tracking-tight text-neutral-900 dark:text-neutral-50 md:text-5xl md:leading-[1.1]"
+      >
+        {presentation.headline}
+      </h1>
+
       {
-        presentation.profile && (
-          <Image
-            src={presentation.profile}
-            class="w-1/4 self-center rounded-full"
-            alt="Your Profile"
-            width="200"
-            height="200"
-          />
+        presentation.subhead && (
+          <p class="max-w-xl text-balance text-base text-neutral-600 dark:text-neutral-400 md:text-lg">
+            {presentation.subhead}
+          </p>
         )
       }
 
-      <div class="flex flex-col gap-8">
-        <h1 class="text-3xl text-neutral-100">
-          {presentation.title}
-        </h1>
-
-        <h2
-          class="w-auto max-w-[60ch] leading-6"
-          set:html={convertAsteriskToStrongTag(presentation.description)}
-        />
-
-        <SocialLinks />
+      <div class="mt-2 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href={presentation.cta.href}
+          class="group inline-flex items-center gap-2 rounded-full bg-neutral-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-700 dark:bg-neutral-50 dark:text-neutral-900 dark:hover:bg-neutral-200"
+        >
+          {presentation.cta.label}
+          <Icon
+            name="arrow-right"
+            class="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+          />
+        </a>
       </div>
-    </article>
+    </div>
+  </section>
 
-    <article class="flex flex-col gap-8">
-      <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="text-lg text-neutral-100">Latest posts</h3>
-        <Link href="/posts" label="See all posts" isUnderline target="_self" />
-      </header>
-      {posts.length === 0 && <p>Soon, stay connected 👀...</p>}
+  <!-- Logo strip -->
+  <section class="-my-6">
+    <p
+      class="mb-6 text-center text-xs uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-500"
+    >
+      Supported teams at
+    </p>
+    <div
+      class="grid grid-cols-3 items-center gap-x-4 gap-y-6 border-y border-neutral-200 py-6 text-neutral-500 dark:border-neutral-800 dark:text-neutral-500 md:grid-cols-6"
+    >
+      {
+        companies.map((c) => (
+          <div class="flex items-center justify-center">
+            {c.href ? (
+              <a
+                href={c.href}
+                target="_blank"
+                rel="noreferrer"
+                class="text-sm font-medium tracking-tight grayscale opacity-70 transition hover:text-neutral-900 hover:opacity-100 dark:hover:text-neutral-100"
+              >
+                {c.name}
+              </a>
+            ) : (
+              <span class="text-sm font-medium tracking-tight opacity-70">
+                {c.name}
+              </span>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </section>
 
-      <section class="flex flex-col gap-4 md:flex-row md:flex-wrap">
+  <!-- Collaboration statement -->
+  <section id="services" class="flex flex-col items-center gap-10 text-center">
+    <div class="flex flex-col items-center gap-3">
+      <span
+        class="inline-flex items-center gap-2 rounded-full border border-neutral-200 px-3 py-1 text-xs uppercase tracking-[0.18em] text-neutral-500 dark:border-neutral-800 dark:text-neutral-400"
+      >
+        How I work
+      </span>
+      <h2
+        class="max-w-3xl text-balance text-2xl font-semibold leading-snug tracking-tight text-neutral-900 dark:text-neutral-50 md:text-3xl"
+      >
+        {site.collaborationStatement}
+      </h2>
+    </div>
+
+    <!-- Service grid -->
+    <div class="grid w-full grid-cols-1 gap-px overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-200 text-left dark:border-neutral-800 dark:bg-neutral-800 sm:grid-cols-2">
+      {
+        services.map((s) => (
+          <article class="flex flex-col gap-3 bg-neutral-50 p-6 dark:bg-neutral-950">
+            <div class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 bg-white text-neutral-700 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200">
+              <Icon name={s.icon} class="h-5 w-5" />
+            </div>
+            <h3 class="text-base font-semibold text-neutral-900 dark:text-neutral-50">
+              {s.title}
+            </h3>
+            <p class="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+              {s.description}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Investment / portfolio -->
+  <section class="flex flex-col gap-8">
+    <div class="flex flex-col gap-2">
+      <span
+        class="text-xs uppercase tracking-[0.18em] text-neutral-500"
+      >
+        Investment portfolio
+      </span>
+      <h2
+        class="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50 md:text-3xl"
+      >
+        What I'm building at {portfolio.parentName}.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-5">
+      <div class="lg:col-span-2 flex flex-col gap-5">
+        <p class="text-base leading-7 text-neutral-600 dark:text-neutral-400">
+          {portfolio.parentBlurb}
+        </p>
         {
-          posts.length !== 0 &&
-            posts
-              .slice(0, 2)
-              .map((post) => (
-                <PostCard
-                  publishedAt={post.data.publishedAt}
-                  title={post.data.title}
-                  description={post.data.description}
-                  slug={post.slug}
-                />
-              ))
+          portfolio.parentHref && (
+            <a
+              href={portfolio.parentHref}
+              target="_blank"
+              rel="noreferrer"
+              class="group inline-flex w-fit items-center gap-1.5 text-sm font-medium text-neutral-900 dark:text-neutral-100"
+            >
+              Visit {portfolio.parentName}
+              <Icon
+                name="arrow-right"
+                class="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+              />
+            </a>
+          )
         }
-      </section>
-    </article>
+        <div
+          class="mt-2 flex items-baseline gap-3 rounded-xl border border-neutral-200 bg-neutral-50 p-5 dark:border-neutral-800 dark:bg-neutral-900"
+        >
+          <span class="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50">
+            {portfolio.mrr}
+          </span>
+          <span class="text-xs uppercase tracking-[0.18em] text-neutral-500">
+            combined monthly recurring revenue
+          </span>
+        </div>
+      </div>
 
-    <article class="flex flex-col gap-8">
-      <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="text-lg text-neutral-100">
-          Selected projects ({projects.length})
-        </h3>
-      </header>
-      {projects.length === 0 && <p>Oops, I must work^^^^^</p>}
-
-      <section class="flex flex-col gap-4">
+      <div class="lg:col-span-3 grid grid-cols-1 gap-4 md:grid-cols-3">
         {
-          projects.length !== 0 &&
-            projects.map((project) => <ProjectCard {...project} />)
+          portfolio.products.map((p) => (
+            <article class="flex flex-col gap-3 rounded-xl border border-neutral-200 bg-neutral-50 p-5 transition hover:border-neutral-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
+              <div class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-200 bg-white text-xs font-semibold uppercase text-neutral-700 dark:border-neutral-700 dark:bg-neutral-950 dark:text-neutral-200">
+                {p.name.charAt(0)}
+              </div>
+              <h3 class="text-base font-semibold text-neutral-900 dark:text-neutral-50">
+                {p.href ? (
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="hover:underline"
+                  >
+                    {p.name}
+                  </a>
+                ) : (
+                  p.name
+                )}
+              </h3>
+              <p class="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+                {p.description}
+              </p>
+            </article>
+          ))
         }
-      </section>
-    </article>
+      </div>
+    </div>
+  </section>
 
-    <article class="flex flex-col gap-8">
-      <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="text-lg text-neutral-100">Get in touch</h3>
-      </header>
-      <p>
-        Email me at <Link
-          href={`mailto:${presentation.mail}`}
-          label={presentation.mail}
-        /> or follow me via my social links.
-      </p>
-
-      <SocialLinks />
-    </article>
-  </main>
+  <!-- Book a meeting -->
+  <section
+    class="flex flex-col items-center gap-6 rounded-3xl border border-neutral-200 bg-neutral-50 px-6 py-14 text-center dark:border-neutral-800 dark:bg-neutral-900 md:py-20"
+  >
+    <span
+      class="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs uppercase tracking-[0.18em] text-neutral-500 dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-400"
+    >
+      Let's talk
+    </span>
+    <h2
+      class="max-w-2xl text-balance text-3xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50 md:text-4xl"
+    >
+      Book a meeting with me.
+    </h2>
+    <p class="max-w-xl text-base text-neutral-600 dark:text-neutral-400">
+      Fastest way to see if there's a fit — pick a slot, share a one-liner about
+      the problem, and we'll go from there.
+    </p>
+    <a
+      href={site.calLink}
+      target="_blank"
+      rel="noreferrer"
+      class="group inline-flex items-center gap-2 rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-neutral-700 dark:bg-neutral-50 dark:text-neutral-900 dark:hover:bg-neutral-200"
+    >
+      <Icon name="calendar" class="h-4 w-4" />
+      Book on Cal.com
+      <Icon
+        name="arrow-right"
+        class="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+      />
+    </a>
+  </section>
 </Layout>
