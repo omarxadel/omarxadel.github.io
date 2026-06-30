@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  @keyframes logos-marquee-right {
+    from {
+      transform: translate3d(-25%, 0, 0);
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .logos-marquee {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+  }
+
+  .logos-track {
+    animation: logos-marquee-right 40s linear infinite;
+    will-change: transform;
+  }
+
+  .logos-marquee:hover .logos-track,
+  .logos-marquee:focus-within .logos-track {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logos-track {
+      animation: none;
+      transform: none;
+    }
+  }
+}

@@ -212,62 +212,72 @@ const metrics: Metric[] = [
 
   <!-- Logo strip -->
   <section class="bg-slate-100 dark:bg-slate-900">
-    <div class="mx-auto max-w-page px-6 py-10 md:px-10 md:py-14">
-      <div
-        class="grid grid-cols-2 items-center gap-x-6 gap-y-8 text-slate-500 dark:text-slate-500 md:grid-cols-4"
-      >
-        {
-          companies.map((c) => {
-            const Wrapper = c.href ? "a" : "span";
-            const wrapperProps = c.href
-              ? { href: c.href, target: "_blank", rel: "noreferrer" }
-              : {};
-            const heightClass = c.heightClass ?? "h-7";
-            return (
-              <div class="flex items-center justify-center">
-                <Wrapper
-                  {...wrapperProps}
-                  aria-label={c.name}
-                  class="inline-flex items-center justify-center opacity-70 transition duration-300 ease-out hover:scale-110 hover:opacity-100"
-                >
-                  {c.logo ? (
-                    <>
-                      <img
-                        src={c.logo}
-                        alt={c.name}
-                        loading="lazy"
-                        class:list={[
-                          heightClass,
-                          "w-auto object-contain",
-                          c.logoDark
-                            ? "dark:hidden"
-                            : (c.tone ?? "dark") === "dark"
-                            ? "invert dark:invert-0"
-                            : "dark:invert",
-                        ]}
-                      />
-                      {c.logoDark && (
-                        <img
-                          src={c.logoDark}
-                          alt={c.name}
-                          loading="lazy"
-                          class:list={[
-                            "hidden w-auto object-contain dark:block",
-                            heightClass,
-                          ]}
-                        />
+    <div class="mx-auto max-w-page py-10 md:py-14">
+      <div class="logos-marquee group relative overflow-hidden">
+        <div
+          class="logos-track flex w-max items-center gap-x-12 text-slate-500 dark:text-slate-500 md:gap-x-20"
+        >
+          {
+            [...companies, ...companies, ...companies, ...companies].map(
+              (c, i) => {
+                const Wrapper = c.href ? "a" : "span";
+                const wrapperProps = c.href
+                  ? { href: c.href, target: "_blank", rel: "noreferrer" }
+                  : {};
+                const heightClass = c.heightClass ?? "h-7";
+                const isClone = i >= companies.length;
+                return (
+                  <div
+                    class="flex shrink-0 items-center justify-center"
+                    style="min-width: 9rem"
+                    aria-hidden={isClone ? "true" : undefined}
+                  >
+                    <Wrapper
+                      {...wrapperProps}
+                      aria-label={c.name}
+                      tabindex={isClone ? -1 : undefined}
+                      class="inline-flex items-center justify-center opacity-70 transition duration-300 ease-out hover:scale-110 hover:opacity-100"
+                    >
+                      {c.logo ? (
+                        <>
+                          <img
+                            src={c.logo}
+                            alt={isClone ? "" : c.name}
+                            loading="lazy"
+                            class:list={[
+                              heightClass,
+                              "w-auto object-contain",
+                              c.logoDark
+                                ? "dark:hidden"
+                                : (c.tone ?? "dark") === "dark"
+                                ? "invert dark:invert-0"
+                                : "dark:invert",
+                            ]}
+                          />
+                          {c.logoDark && (
+                            <img
+                              src={c.logoDark}
+                              alt={isClone ? "" : c.name}
+                              loading="lazy"
+                              class:list={[
+                                "hidden w-auto object-contain dark:block",
+                                heightClass,
+                              ]}
+                            />
+                          )}
+                        </>
+                      ) : (
+                        <span class="text-sm font-medium tracking-tight">
+                          {c.name}
+                        </span>
                       )}
-                    </>
-                  ) : (
-                    <span class="text-sm font-medium tracking-tight">
-                      {c.name}
-                    </span>
-                  )}
-                </Wrapper>
-              </div>
-            );
-          })
-        }
+                    </Wrapper>
+                  </div>
+                );
+              }
+            )
+          }
+        </div>
       </div>
     </div>
   </section>
