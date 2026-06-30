@@ -1,36 +1,55 @@
 ---
-import removeTrailingSlash from "@/utils/removeTrailingSlash";
 import presentation from "@/data/presentation";
-
-const pathname = removeTrailingSlash(Astro.url.pathname);
+import Icon from "./Icon.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 ---
 
-<header class="z-40 flex w-full flex-col gap-2 md:flex-row md:justify-between">
-  <a href={`mailto:${presentation.mail}`} class="hover:text-neutral-100"
-    >{presentation.mail}</a
+<header
+  class="sticky top-0 z-40 -mx-6 border-b border-neutral-200/70 bg-neutral-50/80 px-6 backdrop-blur-md dark:border-neutral-800/70 dark:bg-neutral-950/70 md:-mx-10 md:px-10"
+>
+  <div
+    class="mx-auto flex h-14 max-w-page items-center justify-between gap-4"
   >
+    <a
+      href="/"
+      class="text-sm font-semibold tracking-tight text-neutral-900 dark:text-neutral-50"
+    >
+      omar/<span class="text-neutral-500 dark:text-neutral-400">adel</span>
+    </a>
 
-  <nav role="navigation">
-    <ul role="list" class="flex flex-row gap-2">
-      <li>
-        <a
-          href="/"
-          class:list={{
-            ["hover:text-neutral-100"]: true,
-            ["text-neutral-100"]: pathname === "/",
-          }}>Home</a
-        >
-      </li>
-      <li>/</li>
-      <li>
-        <a
-          href="/posts"
-          class:list={{
-            ["hover:text-neutral-100"]: true,
-            ["text-neutral-100"]: pathname === "/posts",
-          }}>Posts</a
-        >
-      </li>
-    </ul>
-  </nav>
+    <nav aria-label="Primary">
+      <ul class="flex items-center gap-1 text-xs sm:gap-2 sm:text-sm">
+        {
+          presentation.navLinks.map((link, idx) => (
+            <>
+              <li>
+                <a
+                  href={link.link}
+                  target={link.link.startsWith("http") ? "_blank" : "_self"}
+                  rel="noreferrer"
+                  class="group inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-neutral-600 transition hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50"
+                >
+                  <Icon
+                    name={link.icon}
+                    class="h-4 w-4 text-neutral-500 transition group-hover:text-neutral-900 dark:text-neutral-500 dark:group-hover:text-neutral-50"
+                  />
+                  <span class="hidden sm:inline">{link.label}</span>
+                </a>
+              </li>
+              {idx !== presentation.navLinks.length - 1 && (
+                <li
+                  aria-hidden="true"
+                  class="select-none text-neutral-300 dark:text-neutral-700"
+                >
+                  /
+                </li>
+              )}
+            </>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <ThemeToggle />
+  </div>
 </header>
