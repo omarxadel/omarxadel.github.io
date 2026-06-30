@@ -7,6 +7,7 @@ type Social = {
 type Presentation = {
   mail: string;
   status: { emoji: string; label: string };
+  roles: string[];
   headline: string;
   subhead?: string;
   cta: { label: string; href: string };
@@ -17,10 +18,11 @@ type Presentation = {
 const presentation: Presentation = {
   mail: "omarxadel21@gmail.com",
   status: { emoji: "🔒", label: "locked-in" },
+  roles: ["AI", "Founder", "Data"],
   headline:
     "Enabling enterprises with post-training data strategy and grounded AI agents.",
   subhead:
-    "AI engineer & founder. I help applied teams ship reliable, evaluated, production-grade AI.",
+    "I enable research and product teams across enterprise to turn applied AI into systems that ship — grounded, evaluated, and production-ready.",
   cta: { label: "Learn more", href: "/resume.pdf" },
   profile: "/profile.webp",
   navLinks: [
