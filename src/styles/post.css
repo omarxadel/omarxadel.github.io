@@ -3,19 +3,19 @@
 }
 
 .post code {
-  @apply rounded-sm bg-neutral-100 px-1 py-[2px] text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100;
+  @apply rounded-sm bg-slate-100 px-1 py-[2px] text-slate-900 dark:bg-slate-800 dark:text-slate-100;
 }
 
 .post h2 {
-  @apply mt-8 text-2xl font-semibold text-neutral-900 dark:text-neutral-50;
+  @apply mt-8 text-2xl font-semibold text-slate-900 dark:text-slate-50;
 }
 
 .post h3 {
-  @apply mt-6 text-lg font-semibold text-neutral-900 dark:text-neutral-50;
+  @apply mt-6 text-lg font-semibold text-slate-900 dark:text-slate-50;
 }
 
 .post a {
-  @apply text-neutral-900 underline decoration-neutral-300 underline-offset-4 hover:decoration-neutral-700 dark:text-neutral-50 dark:decoration-neutral-700 dark:hover:decoration-neutral-400;
+  @apply text-slate-900 underline decoration-slate-300 underline-offset-4 hover:decoration-slate-700 dark:text-slate-50 dark:decoration-slate-700 dark:hover:decoration-slate-400;
 }
 
 .post ul {
@@ -27,11 +27,11 @@
 }
 
 .post blockquote {
-  @apply flex flex-row gap-3 border-l-2 border-neutral-300 pl-4 italic text-neutral-600 dark:border-neutral-700 dark:text-neutral-400;
+  @apply flex flex-row gap-3 border-l-2 border-slate-300 pl-4 italic text-slate-600 dark:border-slate-700 dark:text-slate-400;
 }
 
 .post pre {
-  @apply overflow-x-auto rounded-md border border-neutral-200 p-4 dark:border-neutral-800;
+  @apply overflow-x-auto rounded-md border border-slate-200 p-4 dark:border-slate-800;
 }
 
 .post pre > code {

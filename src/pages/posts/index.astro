@@ -10,7 +10,7 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
 
 <Layout title="Omar Adel - Posts">
   <section class="flex flex-col gap-12">
-    <h1 class="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50">
+    <h1 class="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
       Posts
     </h1>
 
@@ -18,22 +18,22 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
       {
         posts.map((post) => (
           <a
-            class="group flex flex-col gap-2 border-t border-neutral-200 py-5 transition-colors hover:text-neutral-900 dark:border-neutral-800 dark:hover:text-neutral-50"
+            class="group flex flex-col gap-2 border-t border-slate-200 py-5 transition-colors hover:text-slate-900 dark:border-slate-800 dark:hover:text-slate-50"
             href={`/posts/${post.slug}`}
           >
             <div class="flex w-full items-center justify-between gap-4">
-              <h2 class="text-base font-medium text-neutral-900 dark:text-neutral-100">
+              <h2 class="text-base font-medium text-slate-900 dark:text-slate-100">
                 {post.data.title}
               </h2>
 
-              <div class="flex flex-row items-center gap-4 text-xs text-neutral-500">
+              <div class="flex flex-row items-center gap-4 text-xs text-slate-500">
                 <p>{formatDate(post.data.publishedAt)}</p>
                 <svg
                   width="16"
                   height="16"
                   viewBox="0 0 18 18"
                   fill="none"
-                  class="text-neutral-400 transition-transform duration-300 group-hover:translate-x-1 dark:text-neutral-500"
+                  class="text-slate-400 transition-transform duration-300 group-hover:translate-x-1 dark:text-slate-500"
                 >
                   <path
                     d="M5.25 12.75L12.75 5.25"
@@ -50,7 +50,7 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
                 </svg>
               </div>
             </div>
-            <p class="text-sm text-neutral-600 dark:text-neutral-400">
+            <p class="text-sm text-slate-600 dark:text-slate-400">
               {post.data.description}
             </p>
           </a>
