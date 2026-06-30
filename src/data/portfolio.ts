@@ -27,7 +27,7 @@ const portfolio: Portfolio = {
     {
       name: "Scailor",
       description:
-        "Sales agent infra for SMBs.",
+        "Marketing strategy agent.",
     },
     {
       name: "BEval Studio",
