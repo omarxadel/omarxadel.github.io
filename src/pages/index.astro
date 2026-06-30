@@ -9,202 +9,165 @@ import services from "@/data/services";
 import companies from "@/data/companies";
 import portfolio from "@/data/portfolio";
 import site from "@/data/site";
+
+const metrics = [
+  { value: "6+", label: "Fortune 500 companies supported" },
+  { value: "$4M+", label: "in contracts won" },
+  { value: "20k+", label: "HuggingFace downloads" },
+  { value: "$4k+", label: "made at Bolder" },
+];
 ---
 
 <Layout>
   <!-- Hero -->
-  <section class="flex flex-col items-center gap-10 pt-6 text-center md:pt-12">
-    <div class="relative">
-      <div
-        class="absolute inset-0 -z-10 rounded-full bg-slate-200/60 blur-2xl dark:bg-slate-800/60"
-      >
-      </div>
-      <div
-        class="overflow-hidden rounded-full border border-slate-200 bg-slate-100 ring-4 ring-white dark:border-slate-800 dark:bg-slate-900 dark:ring-slate-950"
-      >
-        <Image
-          src={presentation.profile}
-          alt="Omar Adel"
-          width="208"
-          height="208"
-          class="h-44 w-44 grayscale md:h-52 md:w-52"
-        />
-      </div>
-
-      <span
-        class="absolute -bottom-1 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
-      >
-        <span class="text-base leading-none">{presentation.status.emoji}</span>
-        <span>{presentation.status.label}</span>
-      </span>
-    </div>
-
-    <div class="flex flex-col items-center gap-5">
-      <h1
-        class="max-w-3xl text-balance text-3xl font-semibold leading-tight tracking-tight text-slate-900 dark:text-slate-50 md:text-5xl md:leading-[1.1]"
-      >
-        {presentation.headline}
-      </h1>
-
-      {
-        presentation.subhead && (
-          <p class="max-w-xl text-balance text-base text-slate-600 dark:text-slate-400 md:text-lg">
-            {presentation.subhead}
-          </p>
-        )
-      }
-
-      <div class="mt-2 flex flex-wrap items-center justify-center gap-3">
-        <a
-          href={presentation.cta.href}
-          target="_blank"
-          rel="noreferrer"
-          class="group inline-flex items-center gap-2.5 rounded-full bg-slate-900 px-8 py-4 text-base font-medium text-white transition hover:bg-slate-700 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-200"
+  <section class="bg-white dark:bg-slate-950">
+    <div
+      class="mx-auto flex max-w-page flex-col items-center gap-12 px-6 pb-20 pt-12 text-center md:px-10 md:pb-28 md:pt-20"
+    >
+      <div class="relative">
+        <div
+          class="absolute inset-0 -z-10 rounded-full bg-slate-200/60 blur-2xl dark:bg-slate-800/60"
         >
-          {presentation.cta.label}
-          <Icon
-            name="arrow-up-right"
-            class="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        </div>
+        <div
+          class="overflow-hidden rounded-full border border-slate-200 bg-slate-100 ring-4 ring-white dark:border-slate-800 dark:bg-slate-900 dark:ring-slate-950"
+        >
+          <Image
+            src={presentation.profile}
+            alt="Omar Adel"
+            width="208"
+            height="208"
+            class="h-44 w-44 grayscale md:h-52 md:w-52"
           />
-        </a>
+        </div>
+
+        <span
+          class="absolute -right-6 top-6 inline-flex rotate-[14deg] items-center gap-1.5 rounded-full border border-slate-900/10 bg-slate-900 px-3.5 py-1.5 text-xs font-medium tracking-tight text-white shadow-lg shadow-slate-900/20 ring-1 ring-white/40 transition-transform duration-300 hover:rotate-[8deg] hover:scale-105 dark:border-white/10 dark:bg-white dark:text-slate-900 dark:shadow-black/40 dark:ring-slate-900/60 md:-right-8 md:top-8"
+        >
+          <span class="text-sm leading-none">{presentation.status.emoji}</span>
+          <span>{presentation.status.label}</span>
+        </span>
       </div>
+
+      <div class="flex flex-col items-center gap-5">
+        <h1
+          class="max-w-3xl text-balance text-3xl font-semibold leading-tight tracking-tight text-slate-900 dark:text-slate-50 md:text-5xl md:leading-[1.05]"
+        >
+          {presentation.headline}
+        </h1>
+
+        {
+          presentation.subhead && (
+            <p class="max-w-xl text-balance text-base text-slate-600 dark:text-slate-400 md:text-lg">
+              {presentation.subhead}
+            </p>
+          )
+        }
+
+        <div class="mt-2 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href={presentation.cta.href}
+            target="_blank"
+            rel="noreferrer"
+            class="group inline-flex items-center gap-2.5 rounded-full bg-slate-900 px-8 py-4 text-base font-medium text-white transition hover:bg-slate-700 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-200"
+          >
+            {presentation.cta.label}
+            <Icon
+              name="arrow-up-right"
+              class="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            />
+          </a>
+        </div>
+      </div>
+
+      <!-- Metrics -->
+      <dl
+        class="mt-6 grid w-full max-w-3xl grid-cols-2 divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white text-left dark:divide-slate-800 dark:border-slate-800 dark:bg-slate-950 md:grid-cols-4 md:divide-x"
+      >
+        {
+          metrics.map((m, i) => (
+            <div
+              class:list={[
+                "flex flex-col gap-1 px-5 py-5 md:px-6 md:py-6",
+                i < 2 ? "border-b border-slate-200 dark:border-slate-800 md:border-b-0" : "",
+                i % 2 === 1 ? "" : "border-r border-slate-200 dark:border-slate-800 md:border-r-0",
+              ]}
+            >
+              <dt class="font-mono text-3xl font-medium tracking-tight text-slate-900 dark:text-slate-50 md:text-4xl">
+                {m.value}
+              </dt>
+              <dd class="text-xs leading-snug text-slate-500 dark:text-slate-400">
+                {m.label}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
     </div>
   </section>
 
   <!-- Logo strip -->
-  <section class="-my-6">
-    <div
-      class="grid grid-cols-3 items-center gap-x-4 gap-y-6 border-y border-slate-200 py-6 text-slate-500 dark:border-slate-800 dark:text-slate-500 md:grid-cols-6"
-    >
-      {
-        companies.map((c) => (
-          <div class="flex items-center justify-center">
-            {c.href ? (
-              <a
-                href={c.href}
-                target="_blank"
-                rel="noreferrer"
-                class="text-sm font-medium tracking-tight grayscale opacity-70 transition hover:text-slate-900 hover:opacity-100 dark:hover:text-slate-100"
-              >
-                {c.name}
-              </a>
-            ) : (
-              <span class="text-sm font-medium tracking-tight opacity-70">
-                {c.name}
-              </span>
-            )}
-          </div>
-        ))
-      }
-    </div>
-  </section>
-
-  <!-- Collaboration statement -->
-  <section id="services" class="flex flex-col items-center gap-10 text-center">
-    <div class="flex flex-col items-center gap-3">
-      <span
-        class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-xs uppercase tracking-[0.18em] text-slate-500 dark:border-slate-800 dark:text-slate-400"
+  <section class="bg-slate-100 dark:bg-slate-900">
+    <div class="mx-auto max-w-page px-6 py-10 md:px-10 md:py-14">
+      <div
+        class="grid grid-cols-3 items-center gap-x-4 gap-y-6 text-slate-500 dark:text-slate-500 md:grid-cols-6"
       >
-        How I work
-      </span>
-      <h2
-        class="max-w-3xl text-balance text-2xl font-semibold leading-snug tracking-tight text-slate-900 dark:text-slate-50 md:text-3xl"
-      >
-        {site.collaborationStatement}
-      </h2>
-    </div>
-
-    <!-- Service grid -->
-    <div class="grid w-full grid-cols-1 gap-px overflow-hidden rounded-2xl border border-slate-200 bg-slate-200 text-left dark:border-slate-800 dark:bg-slate-800 sm:grid-cols-2">
-      {
-        services.map((s) => (
-          <article class="flex flex-col gap-3 bg-slate-50 p-6 dark:bg-slate-950">
-            <div class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200">
-              <Icon name={s.icon} class="h-5 w-5" />
-            </div>
-            <h3 class="text-base font-semibold text-slate-900 dark:text-slate-50">
-              {s.title}
-            </h3>
-            <p class="text-sm leading-6 text-slate-600 dark:text-slate-400">
-              {s.description}
-            </p>
-          </article>
-        ))
-      }
-    </div>
-  </section>
-
-  <!-- Investment / portfolio -->
-  <section class="flex flex-col gap-8">
-    <div class="flex flex-col gap-2">
-      <span
-        class="text-xs uppercase tracking-[0.18em] text-slate-500"
-      >
-        Investment portfolio
-      </span>
-      <h2
-        class="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-3xl"
-      >
-        What I'm building at {portfolio.parentName}.
-      </h2>
-    </div>
-
-    <div class="grid grid-cols-1 gap-8 lg:grid-cols-5">
-      <div class="lg:col-span-2 flex flex-col gap-5">
-        <p class="text-base leading-7 text-slate-600 dark:text-slate-400">
-          {portfolio.parentBlurb}
-        </p>
         {
-          portfolio.parentHref && (
-            <a
-              href={portfolio.parentHref}
-              target="_blank"
-              rel="noreferrer"
-              class="group inline-flex w-fit items-center gap-1.5 text-sm font-medium text-slate-900 dark:text-slate-100"
-            >
-              Visit {portfolio.parentName}
-              <Icon
-                name="arrow-right"
-                class="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-              />
-            </a>
-          )
+          companies.map((c) => (
+            <div class="flex items-center justify-center">
+              {c.href ? (
+                <a
+                  href={c.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="text-sm font-medium tracking-tight grayscale opacity-70 transition hover:text-slate-900 hover:opacity-100 dark:hover:text-slate-100"
+                >
+                  {c.name}
+                </a>
+              ) : (
+                <span class="text-sm font-medium tracking-tight opacity-70">
+                  {c.name}
+                </span>
+              )}
+            </div>
+          ))
         }
-        <div
-          class="mt-2 flex items-baseline gap-3 rounded-xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900"
+      </div>
+    </div>
+  </section>
+
+  <!-- Collaboration / Services -->
+  <section id="services" class="bg-white dark:bg-slate-950">
+    <div
+      class="mx-auto flex max-w-page flex-col items-center gap-12 px-6 py-20 text-center md:px-10 md:py-28"
+    >
+      <div class="flex flex-col items-center gap-3">
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-xs uppercase tracking-[0.18em] text-slate-500 dark:border-slate-800 dark:text-slate-400"
         >
-          <span class="text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
-            {portfolio.mrr}
-          </span>
-          <span class="text-xs uppercase tracking-[0.18em] text-slate-500">
-            combined monthly recurring revenue
-          </span>
-        </div>
+          How I work
+        </span>
+        <h2
+          class="max-w-3xl text-balance text-2xl font-semibold leading-snug tracking-tight text-slate-900 dark:text-slate-50 md:text-3xl"
+        >
+          {site.collaborationStatement}
+        </h2>
       </div>
 
-      <div class="lg:col-span-3 grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div
+        class="grid w-full grid-cols-1 gap-px overflow-hidden rounded-2xl border border-slate-200 bg-slate-200 text-left dark:border-slate-800 dark:bg-slate-800 sm:grid-cols-2"
+      >
         {
-          portfolio.products.map((p) => (
-            <article class="flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50 p-5 transition hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
-              <div class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-xs font-semibold uppercase text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
-                {p.name.charAt(0)}
+          services.map((s) => (
+            <article class="flex flex-col gap-3 bg-white p-6 dark:bg-slate-950">
+              <div class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200">
+                <Icon name={s.icon} class="h-5 w-5" />
               </div>
               <h3 class="text-base font-semibold text-slate-900 dark:text-slate-50">
-                {p.href ? (
-                  <a
-                    href={p.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    class="hover:underline"
-                  >
-                    {p.name}
-                  </a>
-                ) : (
-                  p.name
-                )}
+                {s.title}
               </h3>
               <p class="text-sm leading-6 text-slate-600 dark:text-slate-400">
-                {p.description}
+                {s.description}
               </p>
             </article>
           ))
@@ -213,36 +176,119 @@ import site from "@/data/site";
     </div>
   </section>
 
+  <!-- Investment / portfolio -->
+  <section class="bg-slate-100 dark:bg-slate-900">
+    <div class="mx-auto flex max-w-page flex-col gap-10 px-6 py-20 md:px-10 md:py-28">
+      <div class="flex flex-col gap-2">
+        <span class="text-xs uppercase tracking-[0.18em] text-slate-500">
+          Investment portfolio
+        </span>
+        <h2
+          class="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-3xl"
+        >
+          What I'm building at {portfolio.parentName}.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 lg:grid-cols-5">
+        <div class="flex flex-col gap-5 lg:col-span-2">
+          <p class="text-base leading-7 text-slate-600 dark:text-slate-400">
+            {portfolio.parentBlurb}
+          </p>
+          {
+            portfolio.parentHref && (
+              <a
+                href={portfolio.parentHref}
+                target="_blank"
+                rel="noreferrer"
+                class="group inline-flex w-fit items-center gap-1.5 text-sm font-medium text-slate-900 dark:text-slate-100"
+              >
+                Visit {portfolio.parentName}
+                <Icon
+                  name="arrow-right"
+                  class="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                />
+              </a>
+            )
+          }
+          <div
+            class="mt-2 flex items-baseline gap-3 rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-950"
+          >
+            <span
+              class="font-mono text-3xl font-medium tracking-tight text-slate-900 dark:text-slate-50"
+            >
+              {portfolio.mrr}
+            </span>
+            <span class="text-xs uppercase tracking-[0.18em] text-slate-500">
+              combined monthly recurring revenue
+            </span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 lg:col-span-3 md:grid-cols-3">
+          {
+            portfolio.products.map((p) => (
+              <article class="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-5 transition hover:border-slate-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-slate-700">
+                <div class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-xs font-semibold uppercase text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200">
+                  {p.name.charAt(0)}
+                </div>
+                <h3 class="text-base font-semibold text-slate-900 dark:text-slate-50">
+                  {p.href ? (
+                    <a
+                      href={p.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      class="hover:underline"
+                    >
+                      {p.name}
+                    </a>
+                  ) : (
+                    p.name
+                  )}
+                </h3>
+                <p class="text-sm leading-6 text-slate-600 dark:text-slate-400">
+                  {p.description}
+                </p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Book a meeting -->
-  <section
-    class="flex flex-col items-center gap-6 rounded-3xl border border-slate-200 bg-slate-50 px-6 py-14 text-center dark:border-slate-800 dark:bg-slate-900 md:py-20"
-  >
-    <span
-      class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs uppercase tracking-[0.18em] text-slate-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-400"
+  <section class="bg-white dark:bg-slate-950">
+    <div
+      class="mx-auto flex max-w-page flex-col items-center gap-6 px-6 py-24 text-center md:px-10 md:py-32"
     >
-      Let's talk
-    </span>
-    <h2
-      class="max-w-2xl text-balance text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-4xl"
-    >
-      Book a meeting with me.
-    </h2>
-    <p class="max-w-xl text-base text-slate-600 dark:text-slate-400">
-      Fastest way to see if there's a fit — pick a slot, share a one-liner about
-      the problem, and we'll go from there.
-    </p>
-    <a
-      href={site.calLink}
-      target="_blank"
-      rel="noreferrer"
-      class="group inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-slate-700 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-200"
-    >
-      <Icon name="calendar" class="h-4 w-4" />
-      Book on Cal.com
-      <Icon
-        name="arrow-right"
-        class="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-      />
-    </a>
+      <span
+        class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs uppercase tracking-[0.18em] text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400"
+      >
+        Let's talk
+      </span>
+      <h2
+        class="max-w-2xl text-balance text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-5xl"
+      >
+        Book a meeting with me.
+      </h2>
+      <p class="max-w-xl text-base text-slate-600 dark:text-slate-400">
+        Fastest way to see if there's a fit — pick a slot, share a one-liner about
+        the problem, and we'll go from there.
+      </p>
+      <a
+        href={site.calLink}
+        target="_blank"
+        rel="noreferrer"
+        class="group mt-2 inline-flex items-center gap-2 rounded-full bg-slate-900 px-8 py-4 text-base font-medium text-white transition hover:bg-slate-700 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-200"
+      >
+        <Icon name="calendar" class="h-4 w-4" />
+        Book on Cal.com
+        <Icon
+          name="arrow-up-right"
+          class="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        />
+      </a>
+    </div>
   </section>
 </Layout>
