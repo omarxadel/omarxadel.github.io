@@ -16,11 +16,11 @@ import site from "@/data/site";
   <section class="flex flex-col items-center gap-10 pt-6 text-center md:pt-12">
     <div class="relative">
       <div
-        class="absolute inset-0 -z-10 rounded-full bg-neutral-200/60 blur-2xl dark:bg-neutral-800/60"
+        class="absolute inset-0 -z-10 rounded-full bg-slate-200/60 blur-2xl dark:bg-slate-800/60"
       >
       </div>
       <div
-        class="overflow-hidden rounded-full border border-neutral-200 bg-neutral-100 ring-4 ring-white dark:border-neutral-800 dark:bg-neutral-900 dark:ring-neutral-950"
+        class="overflow-hidden rounded-full border border-slate-200 bg-slate-100 ring-4 ring-white dark:border-slate-800 dark:bg-slate-900 dark:ring-slate-950"
       >
         <Image
           src={presentation.profile}
@@ -32,7 +32,7 @@ import site from "@/data/site";
       </div>
 
       <span
-        class="absolute -bottom-1 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-medium text-neutral-700 shadow-sm dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
+        class="absolute -bottom-1 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
       >
         <span class="text-base leading-none">{presentation.status.emoji}</span>
         <span>{presentation.status.label}</span>
@@ -41,14 +41,14 @@ import site from "@/data/site";
 
     <div class="flex flex-col items-center gap-5">
       <h1
-        class="max-w-3xl text-balance text-3xl font-semibold leading-tight tracking-tight text-neutral-900 dark:text-neutral-50 md:text-5xl md:leading-[1.1]"
+        class="max-w-3xl text-balance text-3xl font-semibold leading-tight tracking-tight text-slate-900 dark:text-slate-50 md:text-5xl md:leading-[1.1]"
       >
         {presentation.headline}
       </h1>
 
       {
         presentation.subhead && (
-          <p class="max-w-xl text-balance text-base text-neutral-600 dark:text-neutral-400 md:text-lg">
+          <p class="max-w-xl text-balance text-base text-slate-600 dark:text-slate-400 md:text-lg">
             {presentation.subhead}
           </p>
         )
@@ -57,12 +57,14 @@ import site from "@/data/site";
       <div class="mt-2 flex flex-wrap items-center justify-center gap-3">
         <a
           href={presentation.cta.href}
-          class="group inline-flex items-center gap-2 rounded-full bg-neutral-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-700 dark:bg-neutral-50 dark:text-neutral-900 dark:hover:bg-neutral-200"
+          target="_blank"
+          rel="noreferrer"
+          class="group inline-flex items-center gap-2.5 rounded-full bg-slate-900 px-8 py-4 text-base font-medium text-white transition hover:bg-slate-700 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-200"
         >
           {presentation.cta.label}
           <Icon
-            name="arrow-right"
-            class="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+            name="arrow-up-right"
+            class="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
           />
         </a>
       </div>
@@ -71,13 +73,8 @@ import site from "@/data/site";
 
   <!-- Logo strip -->
   <section class="-my-6">
-    <p
-      class="mb-6 text-center text-xs uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-500"
-    >
-      Supported teams at
-    </p>
     <div
-      class="grid grid-cols-3 items-center gap-x-4 gap-y-6 border-y border-neutral-200 py-6 text-neutral-500 dark:border-neutral-800 dark:text-neutral-500 md:grid-cols-6"
+      class="grid grid-cols-3 items-center gap-x-4 gap-y-6 border-y border-slate-200 py-6 text-slate-500 dark:border-slate-800 dark:text-slate-500 md:grid-cols-6"
     >
       {
         companies.map((c) => (
@@ -87,7 +84,7 @@ import site from "@/data/site";
                 href={c.href}
                 target="_blank"
                 rel="noreferrer"
-                class="text-sm font-medium tracking-tight grayscale opacity-70 transition hover:text-neutral-900 hover:opacity-100 dark:hover:text-neutral-100"
+                class="text-sm font-medium tracking-tight grayscale opacity-70 transition hover:text-slate-900 hover:opacity-100 dark:hover:text-slate-100"
               >
                 {c.name}
               </a>
@@ -106,29 +103,29 @@ import site from "@/data/site";
   <section id="services" class="flex flex-col items-center gap-10 text-center">
     <div class="flex flex-col items-center gap-3">
       <span
-        class="inline-flex items-center gap-2 rounded-full border border-neutral-200 px-3 py-1 text-xs uppercase tracking-[0.18em] text-neutral-500 dark:border-neutral-800 dark:text-neutral-400"
+        class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-xs uppercase tracking-[0.18em] text-slate-500 dark:border-slate-800 dark:text-slate-400"
       >
         How I work
       </span>
       <h2
-        class="max-w-3xl text-balance text-2xl font-semibold leading-snug tracking-tight text-neutral-900 dark:text-neutral-50 md:text-3xl"
+        class="max-w-3xl text-balance text-2xl font-semibold leading-snug tracking-tight text-slate-900 dark:text-slate-50 md:text-3xl"
       >
         {site.collaborationStatement}
       </h2>
     </div>
 
     <!-- Service grid -->
-    <div class="grid w-full grid-cols-1 gap-px overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-200 text-left dark:border-neutral-800 dark:bg-neutral-800 sm:grid-cols-2">
+    <div class="grid w-full grid-cols-1 gap-px overflow-hidden rounded-2xl border border-slate-200 bg-slate-200 text-left dark:border-slate-800 dark:bg-slate-800 sm:grid-cols-2">
       {
         services.map((s) => (
-          <article class="flex flex-col gap-3 bg-neutral-50 p-6 dark:bg-neutral-950">
-            <div class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 bg-white text-neutral-700 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200">
+          <article class="flex flex-col gap-3 bg-slate-50 p-6 dark:bg-slate-950">
+            <div class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200">
               <Icon name={s.icon} class="h-5 w-5" />
             </div>
-            <h3 class="text-base font-semibold text-neutral-900 dark:text-neutral-50">
+            <h3 class="text-base font-semibold text-slate-900 dark:text-slate-50">
               {s.title}
             </h3>
-            <p class="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+            <p class="text-sm leading-6 text-slate-600 dark:text-slate-400">
               {s.description}
             </p>
           </article>
@@ -141,12 +138,12 @@ import site from "@/data/site";
   <section class="flex flex-col gap-8">
     <div class="flex flex-col gap-2">
       <span
-        class="text-xs uppercase tracking-[0.18em] text-neutral-500"
+        class="text-xs uppercase tracking-[0.18em] text-slate-500"
       >
         Investment portfolio
       </span>
       <h2
-        class="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50 md:text-3xl"
+        class="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-3xl"
       >
         What I'm building at {portfolio.parentName}.
       </h2>
@@ -154,7 +151,7 @@ import site from "@/data/site";
 
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-5">
       <div class="lg:col-span-2 flex flex-col gap-5">
-        <p class="text-base leading-7 text-neutral-600 dark:text-neutral-400">
+        <p class="text-base leading-7 text-slate-600 dark:text-slate-400">
           {portfolio.parentBlurb}
         </p>
         {
@@ -163,7 +160,7 @@ import site from "@/data/site";
               href={portfolio.parentHref}
               target="_blank"
               rel="noreferrer"
-              class="group inline-flex w-fit items-center gap-1.5 text-sm font-medium text-neutral-900 dark:text-neutral-100"
+              class="group inline-flex w-fit items-center gap-1.5 text-sm font-medium text-slate-900 dark:text-slate-100"
             >
               Visit {portfolio.parentName}
               <Icon
@@ -174,12 +171,12 @@ import site from "@/data/site";
           )
         }
         <div
-          class="mt-2 flex items-baseline gap-3 rounded-xl border border-neutral-200 bg-neutral-50 p-5 dark:border-neutral-800 dark:bg-neutral-900"
+          class="mt-2 flex items-baseline gap-3 rounded-xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900"
         >
-          <span class="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50">
+          <span class="text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
             {portfolio.mrr}
           </span>
-          <span class="text-xs uppercase tracking-[0.18em] text-neutral-500">
+          <span class="text-xs uppercase tracking-[0.18em] text-slate-500">
             combined monthly recurring revenue
           </span>
         </div>
@@ -188,11 +185,11 @@ import site from "@/data/site";
       <div class="lg:col-span-3 grid grid-cols-1 gap-4 md:grid-cols-3">
         {
           portfolio.products.map((p) => (
-            <article class="flex flex-col gap-3 rounded-xl border border-neutral-200 bg-neutral-50 p-5 transition hover:border-neutral-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
-              <div class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-200 bg-white text-xs font-semibold uppercase text-neutral-700 dark:border-neutral-700 dark:bg-neutral-950 dark:text-neutral-200">
+            <article class="flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50 p-5 transition hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
+              <div class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-xs font-semibold uppercase text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
                 {p.name.charAt(0)}
               </div>
-              <h3 class="text-base font-semibold text-neutral-900 dark:text-neutral-50">
+              <h3 class="text-base font-semibold text-slate-900 dark:text-slate-50">
                 {p.href ? (
                   <a
                     href={p.href}
@@ -206,7 +203,7 @@ import site from "@/data/site";
                   p.name
                 )}
               </h3>
-              <p class="text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+              <p class="text-sm leading-6 text-slate-600 dark:text-slate-400">
                 {p.description}
               </p>
             </article>
@@ -218,19 +215,19 @@ import site from "@/data/site";
 
   <!-- Book a meeting -->
   <section
-    class="flex flex-col items-center gap-6 rounded-3xl border border-neutral-200 bg-neutral-50 px-6 py-14 text-center dark:border-neutral-800 dark:bg-neutral-900 md:py-20"
+    class="flex flex-col items-center gap-6 rounded-3xl border border-slate-200 bg-slate-50 px-6 py-14 text-center dark:border-slate-800 dark:bg-slate-900 md:py-20"
   >
     <span
-      class="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs uppercase tracking-[0.18em] text-neutral-500 dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-400"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs uppercase tracking-[0.18em] text-slate-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-400"
     >
       Let's talk
     </span>
     <h2
-      class="max-w-2xl text-balance text-3xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50 md:text-4xl"
+      class="max-w-2xl text-balance text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-4xl"
     >
       Book a meeting with me.
     </h2>
-    <p class="max-w-xl text-base text-neutral-600 dark:text-neutral-400">
+    <p class="max-w-xl text-base text-slate-600 dark:text-slate-400">
       Fastest way to see if there's a fit — pick a slot, share a one-liner about
       the problem, and we'll go from there.
     </p>
@@ -238,7 +235,7 @@ import site from "@/data/site";
       href={site.calLink}
       target="_blank"
       rel="noreferrer"
-      class="group inline-flex items-center gap-2 rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-neutral-700 dark:bg-neutral-50 dark:text-neutral-900 dark:hover:bg-neutral-200"
+      class="group inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-slate-700 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-200"
     >
       <Icon name="calendar" class="h-4 w-4" />
       Book on Cal.com

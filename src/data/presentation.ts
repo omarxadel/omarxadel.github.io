@@ -21,7 +21,7 @@ const presentation: Presentation = {
     "Enabling enterprises with post-training data strategy and grounded AI agents.",
   subhead:
     "AI engineer & founder. I help applied teams ship reliable, evaluated, production-grade AI.",
-  cta: { label: "Learn more", href: "#services" },
+  cta: { label: "Learn more", href: "/resume.pdf" },
   profile: "/profile.webp",
   navLinks: [
     {

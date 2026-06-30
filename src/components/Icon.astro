@@ -8,6 +8,7 @@ type IconName =
   | "sun"
   | "moon"
   | "arrow-right"
+  | "arrow-up-right"
   | "data"
   | "eval"
   | "agents"
@@ -153,6 +154,25 @@ const sizeAttr = size ? { width: size, height: size } : {};
     >
       <line x1="5" y1="12" x2="19" y2="12" />
       <polyline points="12 5 19 12 12 19" />
+    </svg>
+  )
+}
+
+{
+  name === "arrow-up-right" && (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class={className}
+      aria-hidden="true"
+      {...sizeAttr}
+    >
+      <line x1="7" y1="17" x2="17" y2="7" />
+      <polyline points="8 7 17 7 17 16" />
     </svg>
   )
 }
