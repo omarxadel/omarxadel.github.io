@@ -76,15 +76,25 @@ public/
 
 ### Wiring assets to data
 
-The data files only hold copy today. To surface a logo, add a `logo` field that
-points at the file under `public/` and render it next to the name. Example for
-`companies.ts`:
+`companies.ts` already renders logos when a `logo` field is set, falling back
+to the wordmark when it isn't. Tell the renderer which background the file was
+authored for so it can auto-invert in the opposite theme:
 
 ```ts
-{ name: "Acme Robotics", logo: "/companies/acme-robotics.svg", href: "https://acme.example" }
+{ name: "Pleny", href: "https://pleny.com", logo: "/companies/pleny.svg", tone: "dark" }
+// tone: "dark"  → file is light-on-dark (e.g. white mark) — inverted in light mode
+// tone: "light" → file is dark-on-light (e.g. black mark) — inverted in dark mode
+// tone: "dark" is the default if omitted
 ```
 
-Same pattern for `portfolio.ts` products (`/portfolio/<slug>.svg`).
+If you ship per-theme variants, pass both and `tone` is ignored:
+
+```ts
+{ name: "Acme", logo: "/companies/acme.svg", logoDark: "/companies/acme-dark.svg" }
+```
+
+The portfolio products in `portfolio.ts` don't have a logo field wired yet —
+when you're ready, follow the same pattern under `/portfolio/<slug>.svg`.
 
 ## Commands
 

@@ -172,8 +172,11 @@ const metrics: Metric[] = [
                         loading="lazy"
                         class:list={[
                           "h-7 w-auto object-contain",
-                          "invert dark:invert-0",
-                          c.logoDark ? "dark:hidden" : "",
+                          c.logoDark
+                            ? "dark:hidden"
+                            : (c.tone ?? "dark") === "dark"
+                            ? "invert dark:invert-0"
+                            : "dark:invert",
                         ]}
                       />
                       {c.logoDark && (
