@@ -16,9 +16,7 @@ const companies: Company[] = [
   { name: "Pleny", href: "https://pleny.com", logo: "/companies/pleny.svg", tone: "dark" },
   { name: "Nclip", href: "https://nclip.com", logo: "/companies/nclip.svg", tone: "light" },
   { name: "Turing", href: "https://www.turing.com", logo: "/companies/turing.svg", tone: "dark" },
-  { name: "Company Four" },
-  { name: "Company Five" },
-  { name: "Company Six" },
+  { name: "Bolder", href: "https://bolder.services", logo: "/companies/bolder.svg", tone: "light" },
 ];
 
 export default companies;

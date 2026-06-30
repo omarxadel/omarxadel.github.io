@@ -14,7 +14,7 @@ export type Portfolio = {
 
 const portfolio: Portfolio = {
   parentName: "Bolder",
-  parentHref: "https://bolder.fit",
+  parentHref: "https://bolder.services",
   parentBlurb:
     "Bolder is the studio I run with a small team — we build and ship our own AI products end to end, from research and post-training through to product, distribution and revenue. Every product is an opinionated bet on where applied AI is going next.",
   products: [

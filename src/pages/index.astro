@@ -17,7 +17,7 @@ type Metric = {
   link?: {
     label: string;
     href: string;
-    icon?: "turing";
+    icon?: "turing" | "bolder";
     iconSrc?: string;
   };
   label?: string;
@@ -47,7 +47,7 @@ const metrics: Metric[] = [
     value: "~$5k",
     labelPrefix: "in total revenue at",
     labelSuffix: ", my startup — contracts + products",
-    link: { label: "Bolder", href: "https://bolder.fit" },
+    link: { label: "Bolder", href: "https://bolder.services", icon: "bolder" },
   },
 ];
 ---
@@ -193,7 +193,7 @@ const metrics: Metric[] = [
   <section class="bg-slate-100 dark:bg-slate-900">
     <div class="mx-auto max-w-page px-6 py-10 md:px-10 md:py-14">
       <div
-        class="grid grid-cols-3 items-center gap-x-6 gap-y-8 text-slate-500 dark:text-slate-500 md:grid-cols-6"
+        class="grid grid-cols-2 items-center gap-x-6 gap-y-8 text-slate-500 dark:text-slate-500 md:grid-cols-4"
       >
         {
           companies.map((c) => {
@@ -311,12 +311,16 @@ const metrics: Metric[] = [
                 href={portfolio.parentHref}
                 target="_blank"
                 rel="noreferrer"
-                class="group inline-flex w-fit items-center gap-1.5 text-sm font-medium text-slate-900 dark:text-slate-100"
+                class="group inline-flex w-fit items-center gap-2 text-sm font-medium text-slate-900 dark:text-slate-100"
               >
+                <Icon
+                  name="bolder"
+                  class="h-4 w-auto text-slate-900 dark:text-slate-100"
+                />
                 Visit {portfolio.parentName}
                 <Icon
-                  name="arrow-right"
-                  class="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                  name="arrow-up-right"
+                  class="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                 />
               </a>
             )
