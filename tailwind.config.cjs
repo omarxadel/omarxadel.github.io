@@ -9,6 +9,7 @@ module.exports = {
       fontFamily: {
         sans: ['"Bricolage Grotesque Variable"', "Bricolage Grotesque", ...defaultTheme.fontFamily.sans],
         mono: ["DM Mono", ...defaultTheme.fontFamily.mono],
+        cairo: ["Cairo", ...defaultTheme.fontFamily.sans],
       },
       maxWidth: {
         page: "1080px",
