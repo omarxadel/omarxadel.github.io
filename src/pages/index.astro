@@ -46,7 +46,7 @@ const metrics: Metric[] = [
   {
     value: "~$5k",
     labelPrefix: "in total revenue at",
-    labelSuffix: ", my startup — contracts + products",
+    labelSuffix: ", my startup",
     link: { label: "Bolder", href: "https://bolder.services", icon: "bolder" },
   },
 ];
@@ -58,25 +58,25 @@ const metrics: Metric[] = [
     <div
       class="mx-auto flex max-w-page flex-col items-center gap-12 px-6 pb-20 pt-12 text-center md:px-10 md:pb-28 md:pt-20"
     >
-      <div class="relative">
+      <div class="group relative">
         <div
-          class="absolute inset-0 -z-10 rounded-full bg-slate-200/60 blur-2xl dark:bg-slate-800/60"
+          class="absolute inset-0 -z-10 rounded-full bg-slate-200/60 blur-2xl transition-opacity duration-500 group-hover:opacity-80 dark:bg-slate-800/60"
         >
         </div>
         <div
-          class="overflow-hidden rounded-full border border-slate-200 bg-slate-100 ring-4 ring-white dark:border-slate-800 dark:bg-slate-900 dark:ring-slate-950"
+          class="overflow-hidden rounded-full border border-slate-200 bg-slate-100 ring-4 ring-white transition-transform duration-500 ease-out group-hover:scale-105 dark:border-slate-800 dark:bg-slate-900 dark:ring-slate-950"
         >
           <Image
             src={presentation.profile}
             alt="Omar Adel"
             width="208"
             height="208"
-            class="h-44 w-44 grayscale md:h-52 md:w-52"
+            class="h-44 w-44 grayscale transition-[filter] duration-500 ease-out group-hover:grayscale-0 md:h-52 md:w-52"
           />
         </div>
 
         <span
-          class="absolute -right-6 top-6 inline-flex rotate-[14deg] items-center gap-1.5 rounded-full border border-slate-900/10 bg-slate-900 px-3.5 py-1.5 text-xs font-medium tracking-tight text-white shadow-lg shadow-slate-900/20 ring-1 ring-white/40 transition-transform duration-300 hover:rotate-[8deg] hover:scale-105 dark:border-white/10 dark:bg-white dark:text-slate-900 dark:shadow-black/40 dark:ring-slate-900/60 md:-right-8 md:top-8"
+          class="absolute -right-6 top-6 inline-flex rotate-[14deg] items-center gap-1.5 rounded-full border border-slate-900/10 bg-slate-900 px-3.5 py-1.5 text-xs font-medium tracking-tight text-white shadow-lg shadow-slate-900/20 ring-1 ring-white/40 transition-transform duration-300 group-hover:rotate-[8deg] group-hover:scale-105 dark:border-white/10 dark:bg-white dark:text-slate-900 dark:shadow-black/40 dark:ring-slate-900/60 md:-right-8 md:top-8"
         >
           <span class="text-sm leading-none">{presentation.status.emoji}</span>
           <span>{presentation.status.label}</span>
@@ -201,12 +201,13 @@ const metrics: Metric[] = [
             const wrapperProps = c.href
               ? { href: c.href, target: "_blank", rel: "noreferrer" }
               : {};
+            const heightClass = c.heightClass ?? "h-7";
             return (
               <div class="flex items-center justify-center">
                 <Wrapper
                   {...wrapperProps}
                   aria-label={c.name}
-                  class="inline-flex h-7 items-center justify-center opacity-70 transition hover:opacity-100"
+                  class="inline-flex items-center justify-center opacity-70 transition duration-300 ease-out hover:scale-110 hover:opacity-100"
                 >
                   {c.logo ? (
                     <>
@@ -215,7 +216,8 @@ const metrics: Metric[] = [
                         alt={c.name}
                         loading="lazy"
                         class:list={[
-                          "h-7 w-auto object-contain",
+                          heightClass,
+                          "w-auto object-contain",
                           c.logoDark
                             ? "dark:hidden"
                             : (c.tone ?? "dark") === "dark"
@@ -228,7 +230,10 @@ const metrics: Metric[] = [
                           src={c.logoDark}
                           alt={c.name}
                           loading="lazy"
-                          class="hidden h-7 w-auto object-contain dark:block"
+                          class:list={[
+                            "hidden w-auto object-contain dark:block",
+                            heightClass,
+                          ]}
                         />
                       )}
                     </>
@@ -311,12 +316,8 @@ const metrics: Metric[] = [
                 href={portfolio.parentHref}
                 target="_blank"
                 rel="noreferrer"
-                class="group inline-flex w-fit items-center gap-2 text-sm font-medium text-slate-900 dark:text-slate-100"
+                class="group inline-flex w-fit items-center gap-1.5 text-sm font-medium text-slate-900 dark:text-slate-100"
               >
-                <Icon
-                  name="bolder"
-                  class="h-4 w-auto text-slate-900 dark:text-slate-100"
-                />
                 Visit {portfolio.parentName}
                 <Icon
                   name="arrow-up-right"
@@ -339,30 +340,40 @@ const metrics: Metric[] = [
           </div>
         </div>
 
-        <div class="grid grid-cols-1 gap-4 lg:col-span-3 md:grid-cols-3">
+        <div class="flex flex-col gap-4 lg:col-span-3">
           {
             portfolio.products.map((p) => (
-              <article class="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-5 transition hover:border-slate-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-slate-700">
-                <div class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-xs font-semibold uppercase text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200">
-                  {p.name.charAt(0)}
-                </div>
-                <h3 class="text-base font-semibold text-slate-900 dark:text-slate-50">
-                  {p.href ? (
-                    <a
-                      href={p.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      class="hover:underline"
-                    >
-                      {p.name}
-                    </a>
+              <article class="flex items-start gap-4 rounded-xl border border-slate-200 bg-white p-5 transition hover:border-slate-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-slate-700">
+                <div class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-900">
+                  {p.name === "Bolder.fit" ? (
+                    <span class="font-cairo text-2xl font-black leading-none text-blue-600">
+                      b.
+                    </span>
                   ) : (
-                    p.name
+                    <span class="text-sm font-semibold uppercase text-slate-700 dark:text-slate-200">
+                      {p.name.charAt(0)}
+                    </span>
                   )}
-                </h3>
-                <p class="text-sm leading-6 text-slate-600 dark:text-slate-400">
-                  {p.description}
-                </p>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <h3 class="text-base font-semibold text-slate-900 dark:text-slate-50">
+                    {p.href ? (
+                      <a
+                        href={p.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        class="hover:underline"
+                      >
+                        {p.name}
+                      </a>
+                    ) : (
+                      p.name
+                    )}
+                  </h3>
+                  <p class="text-sm leading-6 text-slate-600 dark:text-slate-400">
+                    {p.description}
+                  </p>
+                </div>
               </article>
             ))
           }
@@ -387,8 +398,7 @@ const metrics: Metric[] = [
         Book a meeting with me.
       </h2>
       <p class="max-w-xl text-base text-slate-600 dark:text-slate-400">
-        Fastest way to see if there's a fit — pick a slot, share a one-liner about
-        the problem, and we'll go from there.
+        Fastest way to see if there's a fit.
       </p>
       <a
         href={site.calLink}
