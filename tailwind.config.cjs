@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["DM Sans", ...defaultTheme.fontFamily.sans],
+        sans: ['"Bricolage Grotesque Variable"', "Bricolage Grotesque", ...defaultTheme.fontFamily.sans],
         mono: ["DM Mono", ...defaultTheme.fontFamily.mono],
       },
       maxWidth: {
