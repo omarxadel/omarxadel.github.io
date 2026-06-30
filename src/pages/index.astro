@@ -14,7 +14,12 @@ type Metric = {
   value: string;
   labelPrefix?: string;
   labelSuffix?: string;
-  link?: { label: string; href: string; icon?: "turing" };
+  link?: {
+    label: string;
+    href: string;
+    icon?: "turing";
+    iconSrc?: string;
+  };
   label?: string;
 };
 
@@ -29,7 +34,15 @@ const metrics: Metric[] = [
       icon: "turing",
     },
   },
-  { value: "20k+", label: "HuggingFace downloads" },
+  {
+    value: "20k+",
+    labelSuffix: "downloads",
+    link: {
+      label: "HuggingFace",
+      href: "https://huggingface.co/omarxadel",
+      iconSrc: "/companies/huggingface.svg",
+    },
+  },
   {
     value: "~$5k",
     labelPrefix: "in total revenue at",
@@ -150,12 +163,20 @@ const metrics: Metric[] = [
                     rel="noreferrer"
                     class="group inline-flex items-baseline gap-1 font-medium text-slate-900 underline decoration-slate-300 underline-offset-2 transition hover:decoration-slate-700 dark:text-slate-100 dark:decoration-slate-700 dark:hover:decoration-slate-400"
                   >
-                    {m.link.icon && (
+                    {m.link.iconSrc ? (
+                      <img
+                        src={m.link.iconSrc}
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        class="h-4 w-auto self-center"
+                      />
+                    ) : m.link.icon ? (
                       <Icon
                         name={m.link.icon}
                         class="h-4 w-auto self-center text-slate-700 dark:text-slate-300"
                       />
-                    )}
+                    ) : null}
                     {m.link.label}
                   </a>
                 )}
