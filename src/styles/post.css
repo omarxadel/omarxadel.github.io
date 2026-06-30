@@ -3,37 +3,37 @@
 }
 
 .post code {
-  @apply rounded-sm bg-neutral-800 px-1 py-[2px] text-orange-500;
+  @apply rounded-sm bg-neutral-100 px-1 py-[2px] text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100;
 }
 
 .post h2 {
-  @apply mt-6 text-3xl text-neutral-100;
+  @apply mt-8 text-2xl font-semibold text-neutral-900 dark:text-neutral-50;
 }
 
 .post h3 {
-  @apply mt-4 text-xl text-neutral-100;
-}
-
-.post code {
-  @apply rounded-sm bg-neutral-800 px-1 py-[2px] text-red-500;
+  @apply mt-6 text-lg font-semibold text-neutral-900 dark:text-neutral-50;
 }
 
 .post a {
-  @apply text-neutral-100 underline;
+  @apply text-neutral-900 underline decoration-neutral-300 underline-offset-4 hover:decoration-neutral-700 dark:text-neutral-50 dark:decoration-neutral-700 dark:hover:decoration-neutral-400;
 }
 
 .post ul {
-  @apply list-disc;
+  @apply list-disc pl-5;
+}
+
+.post ol {
+  @apply list-decimal pl-5;
 }
 
 .post blockquote {
-  @apply flex flex-row gap-2 before:block before:h-auto before:w-1 before:max-w-[1px] before:bg-red-400 before:content-[''];
+  @apply flex flex-row gap-3 border-l-2 border-neutral-300 pl-4 italic text-neutral-600 dark:border-neutral-700 dark:text-neutral-400;
 }
 
 .post pre {
-  @apply p-4;
+  @apply overflow-x-auto rounded-md border border-neutral-200 p-4 dark:border-neutral-800;
 }
 
 .post pre > code {
-  @apply bg-transparent;
+  @apply bg-transparent p-0 text-inherit;
 }
