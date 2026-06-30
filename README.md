@@ -1,54 +1,103 @@
-# 👨‍🚀 Astro - Portfolio Template
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+# omarxadel.github.io
 
-![Template](https://github.com/MaeWolff/astro-portfolio-template/blob/main/public/opengraph-image.jpg)
+Source of [omarxadel.github.io](https://omarxadel.github.io) — Omar Adel's
+one-page portfolio. Built with [Astro](https://astro.build) + Tailwind, hosted
+as a GitHub Pages static site.
 
-This theme/template is designed and crafted by [me](https://www.maxencewolff.com).
-NB: Additional color themes can also be configured on the `src/data/theme.ts` file.
+## Stack
 
-## 🥷 Usage
+- **Astro 3** static site, **Tailwind 3** for styling (`darkMode: 'class'`)
+- **Bricolage Grotesque Variable** for UI, **DM Mono** for code and metrics
+- Light / dark theme persisted in `localStorage`, hydrated before paint
+- Posts authored as MDX under `src/content/posts/`
 
-- You can modify all the information in the files in the `data` folder (presentation, social links, projects list, colors).
-- You can write articles in `markdown` format in the `content/posts` folder.
+## Project layout
 
-## 🧞 Commands
+```
+src/
+├── components/             one-pager building blocks (Icon, Header, ThemeToggle, …)
+├── content/posts/          MDX posts
+├── data/                   single source of truth for copy
+│   ├── presentation.ts     hero, status pill, nav social links, CTA
+│   ├── services.ts         the four "How I work" cards
+│   ├── companies.ts        logo strip entries
+│   ├── portfolio.ts        Bolder blurb, products, MRR
+│   └── site.ts             Cal.com link, collaboration statement
+├── layouts/Layout.astro    light/dark shell + theme bootstrap
+├── pages/
+│   ├── index.astro         the one-pager
+│   └── posts/              /posts and /posts/[slug]
+└── styles/                 tailwind entry + post.css
+```
 
-All commands are run from the root of the project, from a terminal:
+Edit copy in `src/data/*`; the page reads from those files.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Asset conventions (`public/`)
 
-## Contributors ✨
+Every section gets its own subdirectory so assets travel with their feature.
+Names are lowercase **kebab-case** and match the slug used in the data file —
+so a company named `Acme Robotics` becomes `acme-robotics.svg`.
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/SterbenVD"><img src="https://avatars.githubusercontent.com/u/90999906?v=4?s=100" width="100px;" alt="Vishal Vijay Devadiga"/><br /><sub><b>Vishal Vijay Devadiga</b></sub></a><br /><a href="https://github.com/MaeWolff/astro-portfolio-template/commits?author=SterbenVD" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/khushChopra"><img src="https://avatars.githubusercontent.com/u/43996455?v=4?s=100" width="100px;" alt="Khush Chopra"/><br /><sub><b>Khush Chopra</b></sub></a><br /><a href="https://github.com/MaeWolff/astro-portfolio-template/commits?author=khushChopra" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://jbrave.ir"><img src="https://avatars.githubusercontent.com/u/57140027?v=4?s=100" width="100px;" alt="Javad Shoja"/><br /><sub><b>Javad Shoja</b></sub></a><br /><a href="#maintenance-javadshoja" title="Maintenance">🚧</a></td>
-    </tr>
-  </tbody>
-</table>
+```
+public/
+├── favicon.svg
+├── opengraph-image.jpg              1200×630, JPG (social preview)
+├── resume.pdf                       linked by the hero CTA
+│
+├── hero/
+│   └── profile.webp                 square avatar, ≥ 416×416
+│
+├── companies/                       logo strip (Hero → Logo strip section)
+│   ├── <slug>.svg                   default mark, single-tone, viewBox 0 0 N 24
+│   └── <slug>-dark.svg              optional dark-mode override
+│
+├── portfolio/                       Bolder + product marks
+│   ├── bolder.svg                   parent brand mark
+│   ├── bolder-fit.svg               product
+│   ├── scailor.svg                  product
+│   └── beval-studio.svg             product
+│
+└── posts/
+    └── <post-slug>/                 mirror the MDX slug
+        └── <name>.webp
+```
 
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
+### Naming rules
 
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
+| Rule                                       | Example                          |
+| :----------------------------------------- | :------------------------------- |
+| kebab-case, lowercase ASCII                | `acme-robotics.svg`              |
+| slug matches the data entry it belongs to  | `companies[].name` → `<slug>`    |
+| logos: SVG, single-tone, `currentColor`    | tinted via Tailwind text colors  |
+| photos / screenshots: WebP first, PNG fallback when transparency is required | `profile.webp`, `og-card.png`    |
+| dark-mode override: same name + `-dark`    | `acme.svg` / `acme-dark.svg`     |
+| size variants: trailing `@<width>`         | `cover@1920.webp`                |
+| never use spaces, underscores, or `Capital Case` | not `Company Logo.PNG`     |
 
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
+### Wiring assets to data
 
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+The data files only hold copy today. To surface a logo, add a `logo` field that
+points at the file under `public/` and render it next to the name. Example for
+`companies.ts`:
+
+```ts
+{ name: "Acme Robotics", logo: "/companies/acme-robotics.svg", href: "https://acme.example" }
+```
+
+Same pattern for `portfolio.ts` products (`/portfolio/<slug>.svg`).
+
+## Commands
+
+| Command            | Action                                       |
+| :----------------- | :------------------------------------------- |
+| `npm install`      | Install dependencies                         |
+| `npm run dev`      | Local dev server at `localhost:4321`         |
+| `npm run build`    | Build the production site to `./dist/`       |
+| `npm run preview`  | Preview the build locally before deploying   |
+| `npm run check`    | Type/diagnostic check via `astro check`      |
+
+## Credits
+
+Forked from
+[`MaeWolff/astro-portfolio-template`](https://github.com/MaeWolff/astro-portfolio-template)
+and rebuilt as a one-pager. The original template is MIT-licensed.
