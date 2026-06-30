@@ -39,10 +39,20 @@ import ThemeToggle from "./ThemeToggle.astro";
                     aria-label={link.label}
                     class="group inline-flex items-center gap-1 rounded-md px-1.5 py-1 text-slate-600 transition hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-50"
                   >
-                    <Icon
-                      name={link.icon}
-                      class="h-3.5 w-3.5 text-slate-500 transition group-hover:text-slate-900 dark:text-slate-500 dark:group-hover:text-slate-50"
-                    />
+                    {link.iconSrc ? (
+                      <img
+                        src={link.iconSrc}
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        class="h-3.5 w-auto"
+                      />
+                    ) : (
+                      <Icon
+                        name={link.icon}
+                        class="h-3.5 w-3.5 text-slate-500 transition group-hover:text-slate-900 dark:text-slate-500 dark:group-hover:text-slate-50"
+                      />
+                    )}
                     <span class="hidden md:inline">{link.label}</span>
                   </a>
                 </li>
