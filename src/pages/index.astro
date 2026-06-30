@@ -10,11 +10,32 @@ import companies from "@/data/companies";
 import portfolio from "@/data/portfolio";
 import site from "@/data/site";
 
-const metrics = [
+type Metric = {
+  value: string;
+  labelPrefix?: string;
+  labelSuffix?: string;
+  link?: { label: string; href: string; icon?: "turing" };
+  label?: string;
+};
+
+const metrics: Metric[] = [
   { value: "6+", label: "Fortune 500 companies supported" },
-  { value: "$4M+", label: "in contracts won" },
+  {
+    value: "$4M+",
+    labelPrefix: "in contracts won with",
+    link: {
+      label: "Turing",
+      href: "https://www.turing.com",
+      icon: "turing",
+    },
+  },
   { value: "20k+", label: "HuggingFace downloads" },
-  { value: "$4k+", label: "made at Bolder" },
+  {
+    value: "~$5k",
+    labelPrefix: "in total revenue at",
+    labelSuffix: ", my startup — contracts + products",
+    link: { label: "Bolder", href: "https://bolder.fit" },
+  },
 ];
 ---
 
@@ -98,6 +119,24 @@ const metrics = [
               </dt>
               <dd class="text-xs leading-snug text-slate-500 dark:text-slate-400">
                 {m.label}
+                {m.labelPrefix && <span>{m.labelPrefix} </span>}
+                {m.link && (
+                  <a
+                    href={m.link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="group inline-flex items-baseline gap-1 font-medium text-slate-900 underline decoration-slate-300 underline-offset-2 transition hover:decoration-slate-700 dark:text-slate-100 dark:decoration-slate-700 dark:hover:decoration-slate-400"
+                  >
+                    {m.link.icon && (
+                      <Icon
+                        name={m.link.icon}
+                        class="h-3 w-3 self-center text-slate-700 dark:text-slate-300"
+                      />
+                    )}
+                    {m.link.label}
+                  </a>
+                )}
+                {m.labelSuffix && <span>{m.labelSuffix}</span>}
               </dd>
             </div>
           ))
