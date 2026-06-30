@@ -1,34 +1,53 @@
 type Social = {
   label: string;
   link: string;
+  icon: "linkedin" | "medium" | "resume" | "github" | "huggingface";
 };
 
 type Presentation = {
   mail: string;
-  title: string;
-  description: string;
-  socials: Social[];
-  profile?: string;
+  status: { emoji: string; label: string };
+  headline: string;
+  subhead?: string;
+  cta: { label: string; href: string };
+  profile: string;
+  navLinks: Social[];
 };
 
 const presentation: Presentation = {
   mail: "omarxadel21@gmail.com",
-  title: "Hi, I’m Omar 👋",
-  // profile: "/profile.webp",
-  description:
-    "Ahlan, I'm an *Egyptian Software Engineer* based in Alexandria, Egypt. I love working with *NestJS, React and NextJS with TypeScript* for web development. I'm currently pursuing an *MsC in Computer Systems* in Alexandria University.",
-  socials: [
+  status: { emoji: "🔒", label: "locked-in" },
+  headline:
+    "Enabling enterprises with post-training data strategy and grounded AI agents.",
+  subhead:
+    "AI engineer & founder. I help applied teams ship reliable, evaluated, production-grade AI.",
+  cta: { label: "Learn more", href: "#services" },
+  profile: "/profile.webp",
+  navLinks: [
     {
-      label: "X",
-      link: "https://twitter.com/omarxadel",
+      label: "LinkedIn",
+      link: "https://www.linkedin.com/in/omarxadel/",
+      icon: "linkedin",
+    },
+    {
+      label: "Medium",
+      link: "https://medium.com/@omarxadel",
+      icon: "medium",
+    },
+    {
+      label: "Resume",
+      link: "/resume.pdf",
+      icon: "resume",
+    },
+    {
+      label: "GitHub",
+      link: "https://github.com/omarxadel",
+      icon: "github",
     },
     {
       label: "HuggingFace",
       link: "https://huggingface.co/omarxadel",
-    },
-    {
-      label: "Github",
-      link: "https://github.com/omarxadel",
+      icon: "huggingface",
     },
   ],
 };
