@@ -7,7 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Open Sans", ...defaultTheme.fontFamily.sans],
+        sans: ["DM Sans", ...defaultTheme.fontFamily.sans],
+        mono: ["DM Mono", ...defaultTheme.fontFamily.mono],
       },
       maxWidth: {
         page: "1080px",
