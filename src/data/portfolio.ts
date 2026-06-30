@@ -16,26 +16,26 @@ const portfolio: Portfolio = {
   parentName: "Bolder",
   parentHref: "https://bolder.services",
   parentBlurb:
-    "Bolder is the studio I run with a small team — we build and ship our own AI products end to end, from research and post-training through to product, distribution and revenue. Every product is an opinionated bet on where applied AI is going next.",
+    "Bolder is the studio I run with a small team. Every product is an opinionated bet on where applied AI is going next.",
   products: [
     {
       name: "Bolder.fit",
       description:
-        "AI-native fitness coaching — programs, nutrition and feedback grounded in real user data.",
+        "AI-native fitness coaching.",
       href: "https://bolder.fit",
     },
     {
       name: "Scailor",
       description:
-        "Sales agent infra for SMBs — outbound that learns from every reply and books real meetings.",
+        "Sales agent infra for SMBs.",
     },
     {
       name: "BEval Studio",
       description:
-        "An evaluation workbench for AI teams — author, run and compare evals without rebuilding the harness each time.",
+        "An evaluation workbench for AI teams.",
     },
   ],
-  mrr: "$—k MRR",
+  mrr: "~$250",
 };
 
 export default portfolio;

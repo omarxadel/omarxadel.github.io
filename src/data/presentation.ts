@@ -2,6 +2,7 @@ type Social = {
   label: string;
   link: string;
   icon: "linkedin" | "medium" | "resume" | "github" | "huggingface";
+  iconSrc?: string;
 };
 
 type Presentation = {
@@ -22,8 +23,8 @@ const presentation: Presentation = {
   headline:
     "Enabling enterprises with post-training data strategy and grounded AI agents.",
   subhead:
-    "I enable research and product teams across enterprise to turn applied AI into systems that ship — grounded, evaluated, and production-ready.",
-  cta: { label: "Learn more", href: "/resume.pdf" },
+    "I enable research and product teams across enterprise to turn applied AI into systems that ship.",
+  cta: { label: "See resume", href: "/resume.pdf" },
   profile: "/profile.webp",
   navLinks: [
     {
@@ -50,6 +51,7 @@ const presentation: Presentation = {
       label: "HuggingFace",
       link: "https://huggingface.co/omarxadel",
       icon: "huggingface",
+      iconSrc: "/companies/huggingface.svg",
     },
   ],
 };

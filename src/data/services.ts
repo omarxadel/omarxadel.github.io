@@ -9,7 +9,7 @@ const services: Service[] = [
     icon: "data",
     title: "Post-Training Data Strategy",
     description:
-      "From sourcing and curation to SFT, preference data and red-teaming sets — built around the eval surface that actually moves your metrics.",
+      "From sourcing and curation to SFT, preference data and red-teaming sets.",
   },
   {
     icon: "eval",
@@ -21,7 +21,7 @@ const services: Service[] = [
     icon: "agents",
     title: "Grounded AI Agents",
     description:
-      "Retrieval, tool-use and multi-step agents wired to your data and observable end-to-end — not demos, systems your team can operate.",
+      "Retrieval, tool-use and multi-step agents wired to your data and observable end-to-end.",
   },
   {
     icon: "research",
