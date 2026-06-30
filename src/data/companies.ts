@@ -1,10 +1,12 @@
 export type Company = {
   name: string;
   href?: string;
+  logo?: string;
+  logoDark?: string;
 };
 
 const companies: Company[] = [
-  { name: "Company One" },
+  { name: "Pleny", href: "https://pleny.com", logo: "/companies/pleny.svg" },
   { name: "Company Two" },
   { name: "Company Three" },
   { name: "Company Four" },
