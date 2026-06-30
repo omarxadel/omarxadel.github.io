@@ -15,7 +15,7 @@ export type Company = {
 const companies: Company[] = [
   { name: "Pleny", href: "https://pleny.com", logo: "/companies/pleny.svg", tone: "dark" },
   { name: "Nclip", href: "https://nclip.com", logo: "/companies/nclip.svg", tone: "light" },
-  { name: "Company Three" },
+  { name: "Turing", href: "https://www.turing.com", logo: "/companies/turing.svg", tone: "dark" },
   { name: "Company Four" },
   { name: "Company Five" },
   { name: "Company Six" },
